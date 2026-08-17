@@ -68,7 +68,7 @@ export default function Footer() {
           <h3 className="text-xl font-bold mb-4">Contact Us</h3>
           <p className="text-gray-100 text-sm leading-relaxed">📍 The Old Coach House, 25 Noel Street, Nottingham NG7 6AQ</p>
           <div className="mt-5 flex flex-col gap-3">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.dev" target="_blank" rel="noopener noreferrer" className="bg-white text-[#2d459c] font-bold py-2 px-5 rounded-md hover:bg-gray-100 flex items-center justify-center transition">✉ Email</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.com" target="_blank" rel="noopener noreferrer" className="bg-white text-[#2d459c] font-bold py-2 px-5 rounded-md hover:bg-gray-100 flex items-center justify-center transition">✉ Email</a>
             <a href="tel:+441158450000" className="bg-white text-[#2d459c] font-bold py-2 px-5 rounded-md hover:bg-gray-100 flex items-center justify-center transition">☎ Call</a>
           </div>
         </div>

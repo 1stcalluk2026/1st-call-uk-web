@@ -44,7 +44,7 @@ export default function TermsPage() {
         <br />
         The Old Coach House, 25 Noel Street, Nottingham NG7 6AQ
         <br />
-        Email: info@1stcalluk.dev
+        Email: info@1stcalluk.com
       </p>
     </LegalPage>
   );

@@ -41,7 +41,7 @@ export default function CookiePolicyPage() {
       <h2 className="mb-4 mt-10 text-2xl font-semibold text-[#2d459c]">Managing cookies</h2>
       <p className="leading-7">
         You can control cookies through your browser settings. Blocking some cookies may
-        affect how the website works. For questions, contact info@1stcalluk.dev.
+        affect how the website works. For questions, contact info@1stcalluk.com.
       </p>
     </LegalPage>
   );

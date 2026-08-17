@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "../lib/site";
 
 const SERVICES = [
   "High-Performance Website Development",
@@ -26,6 +27,7 @@ export default function EnquiryForm({
 }: EnquiryFormProps) {
   const [status, setStatus] = useState("");
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const [source, setSource] = useState("");
   const [otherSource, setOtherSource] = useState("");
 
@@ -36,7 +38,7 @@ export default function EnquiryForm({
       ? "Book a Consultation"
       : "Start Your Project Enquiry";
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -46,6 +48,7 @@ export default function EnquiryForm({
     const company = String(data.get("company") || "");
     const service = String(data.get("service") || "");
     const message = String(data.get("message") || "");
+    const website = String(data.get("website") || "");
     const heard = source === "Other" ? otherSource : source;
 
     if (source === "Other" && !otherSource.trim()) {
@@ -53,34 +56,51 @@ export default function EnquiryForm({
       return;
     }
 
-    const subject = isBook
-      ? `Consultation request from ${name}`
-      : `Website enquiry from ${name}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      phone ? `Phone: ${phone}` : "",
-      company ? `Company: ${company}` : "",
-      `Service: ${service}`,
-      heard ? `How they found us: ${heard}` : "",
-      "",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    window.location.href = `mailto:info@1stcalluk.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    setSending(true);
     setStatus("");
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          variant: isBook ? "book" : "contact",
+          name,
+          email,
+          phone,
+          company,
+          service,
+          source: heard,
+          message,
+          website,
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error || "Unable to send your message.");
+      }
+
+      setSent(true);
+    } catch (error) {
+      setStatus(
+        error instanceof Error
+          ? error.message
+          : `Unable to send your message. Please email ${CONTACT_EMAIL}.`,
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
     return (
       <div className="rounded-3xl border border-gray-100 bg-white p-8 text-center shadow-xl md:p-12">
-        <h2 className="text-2xl font-bold text-[#2d459c]">Message ready to send</h2>
+        <h2 className="text-2xl font-bold text-[#2d459c]">Message sent</h2>
         <p className="mt-4 text-gray-600">
-          Your email client should open with the enquiry details. If it does not, email us
-          directly at info@1stcalluk.dev. We typically reply within 24 hours on UK business days.
+          Thank you. We have received your {isBook ? "consultation request" : "enquiry"} and
+          will reply to you at the email you provided. We typically respond within 24 hours on
+          UK business days. If you need us sooner, email {CONTACT_EMAIL}.
         </p>
         <Link
           href={isBook ? "/contact" : "/book"}
@@ -101,6 +121,10 @@ export default function EnquiryForm({
       </p>
       <h2 className="mb-6 text-3xl font-bold text-[#2d459c]">{heading}</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="enquiry-website">Website</label>
+          <input id="enquiry-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
         <div>
           <label htmlFor="enquiry-name" className="mb-1 block font-medium text-gray-700">
             Full Name
@@ -227,9 +251,12 @@ export default function EnquiryForm({
         </div>
         <button
           type="submit"
-          className="w-full rounded-lg bg-[#2d459c] py-4 font-bold text-white shadow-md transition hover:bg-[#1e2e68]"
+          disabled={sending}
+          className="w-full rounded-lg bg-[#2d459c] py-4 font-bold text-white shadow-md transition hover:bg-[#1e2e68] disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {auditIntent
+          {sending
+            ? "Sending..."
+            : auditIntent
             ? "Request My Performance Audit"
             : isBook
               ? "Request a Consultation"

@@ -47,10 +47,10 @@ export default async function ContactPage({ searchParams }: Props) {
                   business days.
                 </p>
                 <a
-                  href="mailto:info@1stcalluk.dev"
+                  href="mailto:info@1stcalluk.com"
                   className="block font-medium text-[#2d459c] transition hover:text-[#1e2e68]"
                 >
-                  info@1stcalluk.dev
+                  info@1stcalluk.com
                 </a>
                 <p className="mt-4 text-sm text-gray-500">
                   The Old Coach House, 25 Noel Street, Nottingham NG7 6AQ

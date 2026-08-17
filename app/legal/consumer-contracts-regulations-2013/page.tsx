@@ -28,7 +28,7 @@ export default function ConsumerContractsPage() {
       </p>
       <h2 className="mb-4 mt-10 text-2xl font-semibold text-[#2d459c]">How to cancel</h2>
       <p className="mb-6 leading-7">
-        If a cancellation right applies, email info@1stcalluk.dev with a clear statement
+        If a cancellation right applies, email info@1stcalluk.com with a clear statement
         that you wish to cancel, including your name and the project or enquiry reference.
       </p>
       <h2 className="mb-4 mt-10 text-2xl font-semibold text-[#2d459c]">Our details</h2>
@@ -37,7 +37,7 @@ export default function ConsumerContractsPage() {
         <br />
         The Old Coach House, 25 Noel Street, Nottingham NG7 6AQ
         <br />
-        Email: info@1stcalluk.dev
+        Email: info@1stcalluk.com
         <br />
         Telephone: 0115 845 0000
       </p>

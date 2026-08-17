@@ -65,7 +65,7 @@ export default function Header() {
                   📞 Call Us
                 </a>
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.dev"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white text-[#2d459c] font-bold py-2 px-5 rounded-lg shadow hover:bg-white transition-colors duration-300 flex items-center gap-2"
@@ -124,7 +124,7 @@ export default function Header() {
           ))}
           <div className="flex gap-3 pt-2">
             <a href="tel:+441158450000" className="bg-[#f5c23c] text-[#2d459c] font-bold py-2 px-4 rounded-lg shadow hover:bg-white transition" onClick={() => setMenuOpen(false)}>📞 Call</a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.dev" target="_blank" rel="noopener noreferrer" className="bg-[#f5c23c] text-[#2d459c] font-bold py-2 px-4 rounded-lg shadow hover:bg-white transition" onClick={() => setMenuOpen(false)}>✉ Email</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.com" target="_blank" rel="noopener noreferrer" className="bg-[#f5c23c] text-[#2d459c] font-bold py-2 px-4 rounded-lg shadow hover:bg-white transition" onClick={() => setMenuOpen(false)}>✉ Email</a>
           </div>
         </nav>
       </div>

@@ -1,9 +1,10 @@
 import "./globals.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { CONTACT_EMAIL, SITE_URL } from "./lib/site";
 
 export const metadata = {
-  metadataBase: new URL("https://1stcalluk.website"),
+  metadataBase: new URL(SITE_URL),
 
   title: {
     default: "1st Call UK | Web & Digital Solutions",
@@ -72,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: "https://1stcalluk.website",
               logo: "https://1stcalluk.website/1st-calluk-web-logo.jpg",
               telephone: "+441158450000",
-              email: "info@1stcalluk.dev",
+              email: CONTACT_EMAIL,
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "The Old Coach House, 25 Noel Street",

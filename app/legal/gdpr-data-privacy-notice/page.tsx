@@ -48,7 +48,7 @@ export default function PrivacyNoticePage() {
         <br />
         The Old Coach House, 25 Noel Street, Nottingham NG7 6AQ
         <br />
-        Email: info@1stcalluk.dev
+        Email: info@1stcalluk.com
         <br />
         Telephone: 0115 845 0000
       </p>
