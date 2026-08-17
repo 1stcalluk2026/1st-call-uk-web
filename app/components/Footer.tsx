@@ -27,6 +27,7 @@ const sisterCompanies = [
     href: "https://www.1stcalluk.financial",
     src: "/1stCallUK_financial-services-footer.jpg",
     alt: "1st Call UK Financial Services",
+    imageClass: "scale-[0.94] origin-center",
   },
   {
     href: "https://www.1stcalluk.co.uk/",
@@ -145,14 +146,14 @@ export default function Footer() {
                 href={company.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-md px-3 py-2.5 flex items-center justify-center h-[88px] min-w-0 transition hover:shadow-md"
+                className="bg-white rounded-md px-3 py-2.5 flex items-center justify-center h-[88px] min-w-0 overflow-hidden transition hover:shadow-md"
               >
                 <Image
                   src={company.src}
                   alt={company.alt}
                   width={360}
                   height={121}
-                  className="h-[72px] w-auto max-w-full object-contain"
+                  className={`h-[72px] w-auto max-w-full object-contain ${company.imageClass ?? ""}`}
                 />
               </a>
             ))}
