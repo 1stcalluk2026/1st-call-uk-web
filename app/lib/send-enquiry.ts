@@ -35,10 +35,9 @@ export async function sendEnquiryEmails(payload: EnquiryPayload) {
     throw new Error("Email is not configured.");
   }
 
-  const notifyEmail = process.env.ENQUIRY_NOTIFY_EMAIL || "getu4ever@gmail.com";
-  const toEmail = process.env.ENQUIRY_TO_EMAIL || CONTACT_EMAIL;
-  const fromEmail =
-    process.env.ENQUIRY_FROM_EMAIL || `${SITE_NAME} <beth.t@example.com>`;
+  const notifyEmail = "getu4ever@gmail.com";
+  const toEmail = CONTACT_EMAIL;
+  const fromEmail = `${SITE_NAME} <info@1stcalluk.com>`;
 
   const isBook = payload.variant === "book";
   const kind = isBook ? "Consultation request" : "Website enquiry";
