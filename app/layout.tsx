@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 export const metadata = {
-  metadataBase: new URL("https://www.1stcalluk.dev"),
+  metadataBase: new URL("https://1stcalluk.website"),
 
   title: {
     default: "1st Call UK | Web & Digital Solutions",
@@ -18,10 +18,10 @@ export const metadata = {
   openGraph: {
     type: "website",
     siteName: "1st Call UK Web & Digital",
-    url: "https://www.1stcalluk.dev",
+    url: "https://1stcalluk.website",
     images: [
       {
-        url: "https://www.1stcalluk.dev/og-image.jpg",
+        url: "https://1stcalluk.website/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "1st Call UK Web & Digital Solutions",
@@ -34,11 +34,11 @@ export const metadata = {
     title: "1st Call UK | Web & Digital Solutions",
     description:
       "Professional web design and development from Nottingham. We build fast, modern, future-proof websites for businesses across the UK.",
-    images: ["https://www.1stcalluk.dev/og-image.jpg"],
+    images: ["https://1stcalluk.website/og-image.jpg"],
   },
 
   alternates: {
-    canonical: "https://www.1stcalluk.dev",
+    canonical: "https://1stcalluk.website",
   },
 
   icons: {
@@ -69,8 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               name: "1st Call UK Web & Digital",
-              url: "https://www.1stcalluk.dev",
-              logo: "https://www.1stcalluk.dev/1st-calluk-web-logo.jpg",
+              url: "https://1stcalluk.website",
+              logo: "https://1stcalluk.website/1st-calluk-web-logo.jpg",
               telephone: "+441158450000",
               email: "info@1stcalluk.dev",
               address: {
@@ -98,7 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "1st Call UK Web & Digital",
-              url: "https://www.1stcalluk.dev",
+              url: "https://1stcalluk.website",
             }),
           }}
         />
@@ -115,7 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://www.1stcalluk.dev",
+                  item: "https://1stcalluk.website",
                 },
               ],
             }),

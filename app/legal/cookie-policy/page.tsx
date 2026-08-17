@@ -17,7 +17,7 @@ export default function CookiePolicyPage() {
       <h2 className="mb-4 text-2xl font-semibold text-[#2d459c]">Introduction</h2>
       <p className="mb-6 leading-7">
         This Cookie Policy explains how 1st Call UK Web &amp; Digital (“we”, “our”, “us”)
-        uses cookies and similar technologies on www.1stcalluk.dev. It should be read
+        uses cookies and similar technologies on 1stcalluk.website. It should be read
         alongside our{" "}
         <Link href="/legal/gdpr-data-privacy-notice" className="font-semibold text-[#2d459c] underline">
           GDPR Privacy Notice
