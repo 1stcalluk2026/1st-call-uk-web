@@ -46,7 +46,7 @@ export default function Header() {
         <Link href="/" className="block">
           <div className="w-[260px] h-[100px] relative bg-white rounded-xl shadow-md border border-white/40 overflow-hidden">
             <Image
-              src="/1st-call-uk-web-logo.png"
+              src="/1st-call-uk-web-logo2.png"
               alt="1st Call UK Web & Digital Logo — go to homepage"
               fill
               priority
