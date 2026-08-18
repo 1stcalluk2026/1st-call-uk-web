@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { sendEnquiryEmails } from "../../lib/send-enquiry";
 import { forwardPortalEnquiry } from "../../lib/forward-portal-enquiry";
 
+export const runtime = "nodejs";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type EnquiryBody = {

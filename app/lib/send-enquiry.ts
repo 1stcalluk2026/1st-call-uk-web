@@ -6,8 +6,14 @@ import {
   CONTACT_PHONE_HREF,
   SITE_NAME,
   SITE_URL,
-  TEST_NOTIFY_EMAIL,
 } from "./site";
+import {
+  detailRow,
+  escapeHtml,
+  renderEmailLayout,
+  type EmailSiteConfig,
+} from "./email-layout";
+import { staffBccEmail, staffFromEmail, staffToEmail } from "./staff-notify";
 
 export type EnquiryPayload = {
   variant: "contact" | "book";
@@ -20,55 +26,15 @@ export type EnquiryPayload = {
   message: string;
 };
 
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function row(label: string, value: string): string {
-  if (!value) return "";
-  return `<tr>
-    <td style="padding:8px 0;border-bottom:1px solid #e5e7eb;width:140px;color:#6b7280;font-size:13px;">${escapeHtml(label)}</td>
-    <td style="padding:8px 0;border-bottom:1px solid #e5e7eb;font-size:14px;color:#111827;">${escapeHtml(value)}</td>
-  </tr>`;
-}
-
-function companyFooterHtml() {
-  return `<tr>
-    <td style="padding:20px 24px;background:#f8fafc;border-top:1px solid #e5e7eb;text-align:center;font-size:13px;line-height:1.7;color:#4b5563;">
-      <strong style="color:#2d459c;">${escapeHtml(SITE_NAME)}</strong><br />
-      ${escapeHtml(CONTACT_ADDRESS)}<br />
-      <a href="mailto:${CONTACT_EMAIL}" style="color:#2d459c;text-decoration:none;">${CONTACT_EMAIL}</a>
-      &nbsp;·&nbsp;
-      <a href="tel:${CONTACT_PHONE_HREF}" style="color:#2d459c;text-decoration:none;">${CONTACT_PHONE}</a><br />
-      <a href="${SITE_URL}" style="color:#6b7280;text-decoration:none;">${SITE_URL.replace("https://", "")}</a>
-    </td>
-  </tr>`;
-}
-
-function emailShell(title: string, body: string) {
-  return `<!DOCTYPE html>
-<html lang="en">
-<body style="margin:0;padding:24px;background:#f8fafc;font-family:Arial,Helvetica,sans-serif;color:#111827;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
-    <tr>
-      <td style="background:#2d459c;padding:20px 24px;color:#ffffff;">
-        <p style="margin:0;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.85;">${escapeHtml(SITE_NAME)}</p>
-        <h1 style="margin:8px 0 0;font-size:20px;">${escapeHtml(title)}</h1>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:24px;">${body}</td>
-    </tr>
-    ${companyFooterHtml()}
-  </table>
-</body>
-</html>`;
-}
+const site: EmailSiteConfig = {
+  siteName: SITE_NAME,
+  siteUrl: SITE_URL,
+  contactEmail: CONTACT_EMAIL,
+  contactPhone: CONTACT_PHONE,
+  contactPhoneHref: CONTACT_PHONE_HREF,
+  contactAddress: CONTACT_ADDRESS,
+  tagline: "Web & Digital",
+};
 
 export async function sendEnquiryEmails(payload: EnquiryPayload) {
   const resendKey = process.env.RESEND_API_KEY;
@@ -76,10 +42,9 @@ export async function sendEnquiryEmails(payload: EnquiryPayload) {
     throw new Error("Email is not configured.");
   }
 
-  const notifyEmail = process.env.ENQUIRY_NOTIFY_EMAIL || TEST_NOTIFY_EMAIL;
-  const toEmail = process.env.ENQUIRY_TO_EMAIL || CONTACT_EMAIL;
-  const fromEmail =
-    process.env.ENQUIRY_FROM_EMAIL || `${SITE_NAME} <${CONTACT_EMAIL}>`;
+  const toEmail = staffToEmail();
+  const fromEmail = staffFromEmail(SITE_NAME);
+  const bccEmail = staffBccEmail(toEmail);
 
   const isBook = payload.variant === "book";
   const kind = isBook ? "Consultation request" : "Website enquiry";
@@ -107,34 +72,38 @@ export async function sendEnquiryEmails(payload: EnquiryPayload) {
     .filter((line) => line !== "")
     .join("\n");
 
-  const adminHtml = emailShell(
-    kind,
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-      ${row("Name", payload.name)}
-      ${row("Email", payload.email)}
-      ${row("Phone", payload.phone)}
-      ${row("Company", payload.company)}
-      ${row("Service", payload.service)}
-      ${row("Found us", payload.source)}
+  const adminHtml = renderEmailLayout({
+    site,
+    title: kind,
+    preheader: `${kind} from ${payload.name} on 1stcalluk.website`,
+    bodyHtml: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+      ${detailRow("Name", payload.name)}
+      ${detailRow("Email", payload.email)}
+      ${detailRow("Phone", payload.phone)}
+      ${detailRow("Company", payload.company)}
+      ${detailRow("Service", payload.service)}
+      ${detailRow("Found us", payload.source)}
     </table>
-    <p style="margin:20px 0 8px;font-size:13px;color:#6b7280;">Message</p>
-    <p style="margin:0;white-space:pre-wrap;line-height:1.6;">${escapeHtml(payload.message)}</p>`,
-  );
+    <p style="margin:20px 0 8px;font-size:13px;color:#64748b;">Message</p>
+    <p style="margin:0;white-space:pre-wrap;line-height:1.6;background:#f8fafc;border-left:4px solid #2d459c;padding:12px 16px;color:#0f172a;">${escapeHtml(payload.message)}</p>`,
+  });
 
-  const confirmHtml = emailShell(
-    "We received your message",
-    `<p style="margin:0 0 16px;font-size:16px;">Hi ${escapeHtml(payload.name)},</p>
-    <p style="margin:0 0 16px;line-height:1.6;">Thank you for contacting <strong>${escapeHtml(SITE_NAME)}</strong>. We have received your ${isBook ? "consultation request" : "enquiry"} and will reply within <strong>24 hours on UK business days</strong>.</p>
-    <p style="margin:0 0 8px;font-size:13px;color:#6b7280;">Your message</p>
-    <p style="margin:0;white-space:pre-wrap;line-height:1.6;background:#f8fafc;border-left:4px solid #2d459c;padding:12px 16px;">${escapeHtml(payload.message)}</p>`,
-  );
+  const confirmHtml = renderEmailLayout({
+    site,
+    title: "We received your message",
+    preheader: `Thank you for contacting ${SITE_NAME}`,
+    bodyHtml: `<p style="margin:0 0 16px;font-size:16px;color:#0f172a;">Hi ${escapeHtml(payload.name)},</p>
+    <p style="margin:0 0 16px;line-height:1.6;">Thank you for contacting <strong style="color:#0f172a;">${escapeHtml(SITE_NAME)}</strong>. We have received your ${isBook ? "consultation request" : "enquiry"} and will reply within <strong style="color:#0f172a;">24 hours on UK business days</strong>.</p>
+    <p style="margin:0 0 8px;font-size:13px;color:#64748b;">Your message</p>
+    <p style="margin:0;white-space:pre-wrap;line-height:1.6;background:#f8fafc;border-left:4px solid #2d459c;padding:12px 16px;color:#0f172a;">${escapeHtml(payload.message)}</p>`,
+  });
 
   const resend = new Resend(resendKey);
 
   const admin = await resend.emails.send({
     from: fromEmail,
     to: toEmail,
-    bcc: notifyEmail,
+    bcc: bccEmail,
     replyTo: payload.email,
     subject: adminSubject,
     text: adminText,
