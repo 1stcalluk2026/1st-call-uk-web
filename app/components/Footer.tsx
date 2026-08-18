@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SisterCompanies from "./SisterCompanies";
+import DownloadAppButton from "./DownloadAppButton";
 
 const advantages = [
   "Free initial site review",
@@ -72,6 +73,7 @@ export default function Footer() {
               <br />
               Forest Fields, Nottingham NG7 6AQ
             </p>
+            <DownloadAppButton source="web" placement="footer" />
             <div className="flex flex-col gap-3">
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=info@1stcalluk.com"

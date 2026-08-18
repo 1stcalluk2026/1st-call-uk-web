@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendEnquiryEmails } from "../../lib/send-enquiry";
+import { forwardPortalEnquiry } from "../../lib/forward-portal-enquiry";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -65,6 +66,18 @@ export async function POST(request: Request) {
       company,
       service,
       source,
+      message,
+    });
+
+    await forwardPortalEnquiry({
+      service: "web",
+      sourceSite: "1stcalluk.website",
+      sourceKind: variant,
+      sourceChannel: source || null,
+      name,
+      email,
+      phone,
+      company,
       message,
     });
 
