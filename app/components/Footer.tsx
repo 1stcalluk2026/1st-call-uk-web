@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import SisterCompanies from "./SisterCompanies";
 
 const advantages = [
   "Free initial site review",
@@ -15,25 +15,6 @@ const legalLinks = [
   { href: "/legal/gdpr-data-privacy-notice", label: "GDPR Data Privacy Notice" },
   { href: "/legal/cookie-policy", label: "Cookie Policy" },
   { href: "/legal/terms-of-website-use", label: "Terms of Website Use" },
-];
-
-const sisterCompanies = [
-  {
-    href: "https://www.1stcalluk.com/",
-    src: "/1st-calluk-immigration-logo.jpg",
-    alt: "1st Call UK Immigration Services",
-  },
-  {
-    href: "https://www.1stcalluk.financial",
-    src: "/1stCallUK_financial-services-footer.jpg",
-    alt: "1st Call UK Financial Services",
-    imageClass: "scale-[0.94] origin-center",
-  },
-  {
-    href: "https://www.1stcalluk.co.uk/",
-    src: "/1stCallUK_group_logo02.jpg",
-    alt: "1st Call UK Group",
-  },
 ];
 
 export default function Footer() {
@@ -134,31 +115,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Sister companies */}
-        <div className="pt-8">
-          <p className="text-white/70 text-sm mb-4 text-center md:text-left">
-            Visit our sister companies
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto md:mx-0">
-            {sisterCompanies.map((company) => (
-              <a
-                key={company.href}
-                href={company.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-md px-3 py-2.5 flex items-center justify-center h-[88px] min-w-0 overflow-hidden transition hover:shadow-md"
-              >
-                <Image
-                  src={company.src}
-                  alt={company.alt}
-                  width={360}
-                  height={121}
-                  className={`h-[72px] w-auto max-w-full object-contain ${company.imageClass ?? ""}`}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
+        <SisterCompanies site="web" />
       </div>
 
       <div className="bg-[#233a86] text-white/60 py-4 text-xs">
