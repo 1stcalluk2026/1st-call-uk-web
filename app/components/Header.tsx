@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import DownloadAppButton from "./DownloadAppButton";
+import { PORTAL_ORIGIN } from "../lib/app-download";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -14,10 +15,6 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
-
-const PORTAL_ORIGIN = (
-  process.env.NEXT_PUBLIC_PORTAL_URL || "https://1st-calluk-portal-zeta.vercel.app"
-).replace(/\/$/, "");
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
