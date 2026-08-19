@@ -1,0 +1,41 @@
+/* Sticky card stack — CSS only. Do not put overflow/transform on html, body, main, or page wrappers. */
+
+.stack {
+  position: relative;
+  display: block;
+}
+
+.stack .card {
+  position: relative;
+  min-height: 0;
+}
+
+.stack .card-1 {
+  z-index: 1;
+  background-color: #1e2e68;
+}
+
+.stack .card-2 {
+  z-index: 2;
+  background-color: #233a86;
+}
+
+.stack .card-3 {
+  z-index: 3;
+  background-color: #2d459c;
+}
+
+@media (min-width: 768px) {
+  .stack .card {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .stack .card {
+    position: relative;
+    min-height: 0;
+  }
+}

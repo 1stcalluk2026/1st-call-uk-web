@@ -1,41 +1,15 @@
-"use client";
-
-import { useState } from "react";
 import FadeIn from "./components/FadeIn";
+import HomeFaq from "./components/HomeFaq";
+import HomeStack from "./components/HomeStack";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const faqs = [
-    {
-      q: "Who do you work best with?",
-      a: "We work best with UK service businesses that rely on trust, clarity, and enquiries to win work. That includes legal, financial, immigration, construction, trade, and other service-led businesses that need a stronger website presence.",
-    },
-    {
-      q: "Can you improve an existing website?",
-      a: "Yes. If your current website feels slow, unclear, outdated, or is not bringing in the right enquiries, we can audit it, improve it, or rebuild it into a faster, clearer, and more effective lead generation website.",
-    },
-    {
-      q: "Do you build custom websites or use templates?",
-      a: "We focus on custom website design and development built around your business goals, messaging, and user journey. The aim is to create a website that feels credible, performs well, and supports long-term growth.",
-    },
-    {
-      q: "What if I am not ready for a full website project?",
-      a: "That is completely fine. Many businesses start with a website audit to understand what is hurting trust, visibility, and conversions before deciding on a larger rebuild.",
-    },
-    {
-      q: "How long does a typical project take?",
-      a: "Most website projects take between 3 and 6 weeks depending on the scope, number of pages, and feedback turnaround.",
-    },
-  ];
-
   return (
-    <FadeIn>
-      <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900">
+      <FadeIn>
         {/* HERO */}
-        <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden text-white pt-20 pb-16 md:pt-18 md:pb-20">
+        <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden overflow-x-hidden text-white pt-20 pb-16 md:pt-18 md:pb-20">
           <Image
             src="/home-banner.png"
             alt="Web design for UK service businesses"
@@ -88,9 +62,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </FadeIn>
 
+      <FadeIn>
         {/* POSITIONING */}
-        <section className="px-6 py-20 md:px-10 md:py-24">
+        <section className="overflow-x-hidden px-6 py-20 md:px-10 md:py-24">
           <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
             <div>
               <h2 className="mb-8 text-4xl font-bold leading-tight text-[#2d459c] md:text-5xl">
@@ -130,9 +106,13 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </FadeIn>
 
+      <HomeStack />
+
+      <FadeIn>
         {/* STATS */}
-        <section className="bg-[#2d459c] py-16 text-white">
+        <section className="overflow-x-hidden bg-[#2d459c] py-16 text-white">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 text-center md:grid-cols-4">
             <div>
               <div className="text-5xl font-bold text-blue-200">98+</div>
@@ -294,38 +274,7 @@ export default function Home() {
 
 
 
-        {/* FAQ */}
-        <section className="bg-white px-6 py-20 md:px-10 md:py-24">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#2d459c]">
-              Frequently asked questions
-            </h2>
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 shadow-sm">
-                  <button
-                    type="button"
-                    aria-expanded={openIndex === index}
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="flex w-full items-center justify-between p-6 text-left font-bold text-[#2d459c] hover:bg-gray-100"
-                  >
-                    {faq.q}
-                    <span className="text-2xl">{openIndex === index ? "-" : "+"}</span>
-                  </button>
-                  <div
-                    className={`grid transition-[grid-template-rows] duration-300 ${
-                      openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="px-6 pb-6 text-gray-600">{faq.a}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HomeFaq />
 
         {/* FINAL CTA */}
         <section className="bg-blue-900 px-6 py-24 text-center text-white">
@@ -343,7 +292,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
-    </FadeIn>
+      </FadeIn>
+    </div>
   );
 }

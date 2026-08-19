@@ -69,6 +69,59 @@ export default function OurWorkPage() {
               business easier to trust, easier to understand, and easier to contact.
             </p>
           </div>
+          <article className="mx-auto mb-16 grid max-w-6xl overflow-hidden rounded-3xl border border-gray-100 bg-[#f8f9fc] shadow-lg md:grid-cols-2">
+            <div className="relative min-h-[280px] md:min-h-[420px]">
+              <Image
+                src="/work/wild-hearts-collective.jpg"
+                alt="Wild Hearts Collective aerial and pole studio website"
+                fill
+                className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+            </div>
+            <div className="flex flex-col justify-center px-8 py-10 md:px-10 md:py-12">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-[#2d459c]">
+                Featured case study
+              </p>
+              <h3 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
+                Wild Hearts Collective
+              </h3>
+              <p className="mb-4 leading-relaxed text-slate-600">
+                A full e-commerce website with integrated class booking for{" "}
+                <strong className="text-slate-800">Wild Hearts Collective</strong> — an inclusive
+                pole and aerial studio in Mansfield. Clients can browse classes, pay online, and
+                book in one journey.
+              </p>
+              <p className="mb-8 leading-relaxed text-slate-600">
+                The live site has been widely admired, including by the client. It is a fast,
+                modern build that turns visitors into bookings rather than leaving them to chase
+                a diary on social media.
+              </p>
+              <div className="mb-8 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-white px-4 py-4 shadow-sm">
+                  <p className="font-bold text-[#2d459c]">E-commerce</p>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    Online payments
+                  </p>
+                </div>
+                <div className="rounded-xl bg-white px-4 py-4 shadow-sm">
+                  <p className="font-bold text-[#2d459c]">Live booking</p>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    Classes &amp; courses
+                  </p>
+                </div>
+              </div>
+              <a
+                href="http://wildheartscollective.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#1e2e68] px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#2d459c]"
+              >
+                Visit live site →
+              </a>
+            </div>
+          </article>
+
           <div className="relative mx-auto mb-16 h-[360px] max-w-6xl overflow-hidden rounded-3xl shadow-2xl">
             <Image
               src="/body/body-our-work.png"

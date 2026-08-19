@@ -1,4 +1,6 @@
 import "./globals.css";
+import "./stack.css";
+import CookieBanner from "./components/CookieBanner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { CONTACT_EMAIL, SITE_URL } from "./lib/site";
@@ -52,15 +54,16 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen overflow-x-hidden bg-white text-gray-900">
+      <body className="min-h-screen bg-white text-gray-900">
 
         <Header />
         <main>{children}</main>
         <Footer />
-
-        <div className="bg-black text-white text-center py-4 text-sm border-t border-[#0c5f59]">
-          © {new Date().getFullYear()} 1st Call UK Web & Digital. All rights reserved.
-        </div>
+        <CookieBanner
+          logoSrc="/1st-call-uk-web-logo2.png"
+          logoAlt="1st Call UK Web & Digital"
+          policyHref="/legal/cookie-policy"
+        />
 
         {/* ===== ORGANISATION SCHEMA ===== */}
         <script

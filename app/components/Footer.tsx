@@ -20,7 +20,7 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2d459c] text-white">
+    <footer className="overflow-x-hidden bg-[#2d459c] text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10 pt-14 pb-10">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 items-start pb-10 border-b border-white/15">
           {/* Column 1 — Branding & About */}
