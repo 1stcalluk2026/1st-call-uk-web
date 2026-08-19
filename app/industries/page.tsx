@@ -134,9 +134,7 @@ export default function IndustriesPage() {
 
         <CtaBand
           title="Need a website that fits your sector?"
-          description="Tell us about your business and the enquiries you want more of. We will recommend the right starting point."
-          secondaryHref="/our-services"
-          secondaryLabel="View Services"
+          description="Tell us about your business and the enquiries you want more of."
         />
       </div>
     </FadeIn>

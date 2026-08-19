@@ -173,12 +173,7 @@ export default function OurWorkPage() {
           </div>
         </section>
 
-        <CtaBand
-          title="If your website should be bringing in better enquiries, start there"
-          primaryLabel="Book an assessment"
-          secondaryHref="/contact"
-          secondaryLabel="Request a review"
-        />
+        <CtaBand title="Let's look at why visitors are not getting in touch" />
       </div>
     </FadeIn>
   );

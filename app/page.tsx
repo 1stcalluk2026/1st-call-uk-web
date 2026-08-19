@@ -1,3 +1,4 @@
+import CtaBand from "./components/CtaBand";
 import FadeIn from "./components/FadeIn";
 import HomeFaq from "./components/HomeFaq";
 import HomeStack from "./components/HomeStack";
@@ -276,22 +277,7 @@ export default function Home() {
 
         <HomeFaq />
 
-        {/* FINAL CTA */}
-        <section className="bg-blue-900 px-6 py-24 text-center text-white">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl">
-              If your website should be bringing in better enquiries, start there
-            </h2>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/book" className="rounded-full bg-[#2d459c] px-12 py-4 text-lg font-bold text-white transition hover:bg-[#1e2e68]">
-                Book an assessment
-              </Link>
-              <Link href="/contact" className="rounded-full border border-white/20 bg-white/10 px-12 py-4 text-lg font-bold text-white transition hover:bg-white/20">
-                Request a review
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CtaBand title="Let's look at why visitors are not getting in touch" />
       </FadeIn>
     </div>
   );

@@ -66,12 +66,7 @@ export default function BlogPage() {
           </div>
         </section>
 
-        <CtaBand
-          title="Want this thinking applied to your website?"
-          description="Book a consultation or request a website audit and we will tell you what is hurting trust, visibility, and conversions."
-          secondaryHref="/contact?intent=audit"
-          secondaryLabel="Request a Website Audit"
-        />
+        <CtaBand title="Want this thinking applied to your website?" />
       </div>
     </FadeIn>
   );

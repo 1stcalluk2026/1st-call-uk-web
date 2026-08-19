@@ -164,11 +164,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <CtaBand
-          title="Ready for digital systems that help your business scale?"
-          description="If you need a high-performing website, a clearer conversion path, or a custom digital system — built from scratch for speed, security, and growth — 1st Call UK can help you take the next step."
-          primaryLabel="Request a Free Consultation"
-        />
+        <CtaBand title="Ready for digital systems that help your business scale?" />
       </div>
     </FadeIn>
   );

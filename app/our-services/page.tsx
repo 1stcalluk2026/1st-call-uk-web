@@ -381,13 +381,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <CtaBand
-          title="Start with the right service for your business"
-          description="If you need a new website, better performance, or clearer direction on what to improve, the next step is a focused conversation."
-          primaryLabel="Get Service Advice"
-          secondaryHref="/contact"
-          secondaryLabel="Request a Review"
-        />
+        <CtaBand title="Start with the right service for your business" />
       </div>
     </FadeIn>
   );

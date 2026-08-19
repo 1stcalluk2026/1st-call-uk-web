@@ -103,14 +103,7 @@ export default function ServiceDetail({
           </section>
         ) : null}
 
-        <CtaBand
-          title={ctaTitle}
-          description={ctaDescription}
-          primaryHref="/book"
-          primaryLabel="Start Your Project"
-          secondaryHref="/contact"
-          secondaryLabel="Request a Review"
-        />
+        <CtaBand title={ctaTitle} description={ctaDescription} />
       </div>
     </FadeIn>
   );

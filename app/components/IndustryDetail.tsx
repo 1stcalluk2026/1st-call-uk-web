@@ -94,12 +94,7 @@ export default function IndustryDetail({
             </div>
           </section>
         ) : null}
-        <CtaBand
-          title={`Need a website that fits ${crumbLabel.toLowerCase()}?`}
-          description="We can review your current site and outline the structure, messaging, and performance work most likely to improve enquiries."
-          secondaryHref="/our-services"
-          secondaryLabel="View Services"
-        />
+        <CtaBand title={`Need a website that fits ${crumbLabel.toLowerCase()}?`} />
       </div>
     </FadeIn>
   );
